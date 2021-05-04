@@ -72,11 +72,11 @@ namespace InteractiveMiniGame.RussianEggs
 
         void BindPlayerInput(PlayerInput playerInput)
         {
-            var exitGameAction = playerInput.actions.FindAction(exitGame);
-            var upRightAction = playerInput.actions.FindAction(upRight);
-            var downRightAction = playerInput.actions.FindAction(downRight);
-            var upLeftAction = playerInput.actions.FindAction(upLeft);
-            var downLeftAction = playerInput.actions.FindAction(downLeft);
+            var exitGameAction = playerInput.actions.FindActionMap(actionMap).FindAction(exitGame);
+            var upRightAction = playerInput.actions.FindActionMap(actionMap).FindAction(upRight);
+            var downRightAction = playerInput.actions.FindActionMap(actionMap).FindAction(downRight);
+            var upLeftAction = playerInput.actions.FindActionMap(actionMap).FindAction(upLeft);
+            var downLeftAction = playerInput.actions.FindActionMap(actionMap).FindAction(downLeft);
 
             exitGameAction.performed += OnExitGame;
             upRightAction.performed += OnUpRight;
@@ -87,11 +87,11 @@ namespace InteractiveMiniGame.RussianEggs
 
         void UnbindPlayerInput(PlayerInput playerInput)
         {
-            var exitGameAction = playerInput.actions.FindAction(exitGame);
-            var upRightAction = playerInput.actions.FindAction(upRight);
-            var downRightAction = playerInput.actions.FindAction(downRight);
-            var upLeftAction = playerInput.actions.FindAction(upLeft);
-            var downLeftAction = playerInput.actions.FindAction(downLeft);
+            var exitGameAction = playerInput.actions.FindActionMap(actionMap).FindAction(exitGame);
+            var upRightAction = playerInput.actions.FindActionMap(actionMap).FindAction(upRight);
+            var downRightAction = playerInput.actions.FindActionMap(actionMap).FindAction(downRight);
+            var upLeftAction = playerInput.actions.FindActionMap(actionMap).FindAction(upLeft);
+            var downLeftAction = playerInput.actions.FindActionMap(actionMap).FindAction(downLeft);
 
             exitGameAction.performed -= OnExitGame;
             upRightAction.performed -= OnUpRight;
