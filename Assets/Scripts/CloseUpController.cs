@@ -12,7 +12,7 @@ namespace InteractiveMiniGame
         [Tooltip("Scale of how close object should be closed to")]
         [SerializeField] public float closeUpScaleOffset = 0.4f;
 
-        public Transform closedUpObject { get; private set; }
+        public Transform ClosedUpObject { get; private set; }
 
         public delegate void OnPerformEnd();
 
@@ -23,13 +23,13 @@ namespace InteractiveMiniGame
 
         public void PerformCloseUp(Transform objectToClose, OnPerformEnd onPerformClosedUp)
         {
-            if (closedUpObject == objectToClose)
+            if (ClosedUpObject == objectToClose)
                 return;
 
-            closedUpObject = objectToClose;
-            _originalObjectPosition = closedUpObject.position;
-            _originalObjectRotation = closedUpObject.rotation;
-            StartCoroutine(PerformCloseUp(closedUpObject, onPerformClosedUp, 1.0f));
+            ClosedUpObject = objectToClose;
+            _originalObjectPosition = ClosedUpObject.position;
+            _originalObjectRotation = ClosedUpObject.rotation;
+            StartCoroutine(PerformCloseUp(ClosedUpObject, onPerformClosedUp, 1.0f));
         }
 
         IEnumerator PerformCloseUp(Transform objectToClose, OnPerformEnd onPerformClosedUp, float time)
@@ -46,7 +46,7 @@ namespace InteractiveMiniGame
 
         public void PerformReturnObject(OnPerformEnd onPerformReturned)
         {
-            if (!closedUpObject)
+            if (!ClosedUpObject)
                 return;
 
             StartCoroutine(PerformReturnObject(onPerformReturned, 1.0f));
@@ -56,12 +56,12 @@ namespace InteractiveMiniGame
         {
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
             {
-                closedUpObject.position = Vector3.Lerp(closedUpObject.position, _originalObjectPosition, t);
-                closedUpObject.rotation = Quaternion.Lerp(closedUpObject.rotation, _originalObjectRotation, t);
+                ClosedUpObject.position = Vector3.Lerp(ClosedUpObject.position, _originalObjectPosition, t);
+                ClosedUpObject.rotation = Quaternion.Lerp(ClosedUpObject.rotation, _originalObjectRotation, t);
                 yield return null;
             }
 
-            closedUpObject = null;
+            ClosedUpObject = null;
             onPerformReturned?.Invoke();
         }
     }

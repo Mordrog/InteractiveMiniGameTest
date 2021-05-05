@@ -16,7 +16,7 @@ namespace InteractiveMiniGame
 
         [SerializeField] public LayerMask interactMask;
 
-        public IInteractable currentInteractable { get; private set; }
+        public IInteractable CurrentInteractable { get; private set; }
 
         void FixedUpdate()
         {
@@ -26,22 +26,22 @@ namespace InteractiveMiniGame
             Ray raycastRay = new Ray(firstPersonCamera.transform.position, firstPersonCamera.transform.forward);
             if (Physics.SphereCast(raycastRay, radius, out RaycastHit raycastHit, interactDistance, interactMask, QueryTriggerInteraction.Collide))
             {
-                currentInteractable = raycastHit.transform.GetComponentInParent<IInteractable>();
+                CurrentInteractable = raycastHit.transform.GetComponentInParent<IInteractable>();
 
-                if (currentInteractable == null)
+                if (CurrentInteractable == null)
                 {
                     Debug.LogError($"Gameobject {raycastHit.transform.gameObject} have interactable mask but does not implement IInteractable interface!");
                     return;
                 }
             }
             else
-                currentInteractable = null;
+                CurrentInteractable = null;
         }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            if (currentInteractable != null && currentInteractable.CanInteract)
-                currentInteractable.DoInteract(this);
+            if (CurrentInteractable != null && CurrentInteractable.CanInteract)
+                CurrentInteractable.DoInteract(this);
         }
     }
 }

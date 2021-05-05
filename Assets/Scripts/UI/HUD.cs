@@ -7,11 +7,11 @@ namespace InteractiveMiniGame.UI
     public class HUD : MonoBehaviour
     {
         // Will propably need no scene dependant solution
-        [SerializeField] GameObject player;
+        [SerializeField] public GameObject player;
 
-        [SerializeField] RectTransform crossHair;
+        [SerializeField] public RectTransform crossHair;
 
-        [SerializeField] RectTransform interactableInfo;
+        [SerializeField] public RectTransform interactableInfo;
 
         private PlayerInput _playerInput;
         private Interactor _interactor;
@@ -30,12 +30,12 @@ namespace InteractiveMiniGame.UI
         {
             UpdateInteractableInfo();
 
-            crossHair.gameObject.SetActive(_interactor.currentInteractable == null);
+            crossHair.gameObject.SetActive(_interactor.CurrentInteractable == null);
         }
 
         void UpdateInteractableInfo()
         {
-            if (_interactor.currentInteractable != null && !_closeUpController.closedUpObject)
+            if (_interactor.CurrentInteractable != null && !_closeUpController.ClosedUpObject)
             {
                 interactableInfo.gameObject.SetActive(true);
             }

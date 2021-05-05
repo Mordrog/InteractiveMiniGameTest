@@ -6,19 +6,20 @@ namespace InteractiveMiniGame.RussianEggs
 {
     public class VirtualButton : MonoBehaviour
     {
-        [SerializeField] new SpriteRenderer renderer;
+        [SerializeField] public SpriteRenderer buttonRenderer;
 
-        [SerializeField] Sprite onState;
+        [SerializeField] public Sprite onState;
 
-        [SerializeField] Sprite offState;
+        [SerializeField] public Sprite offState;
 
         private bool _on;
 
-        public bool On {
+        public bool On
+        {
             get => _on;
             set
             {
-                renderer.sprite = value ? onState : offState;
+                buttonRenderer.sprite = value ? onState : offState;
                 _on = value;
             }
         }
