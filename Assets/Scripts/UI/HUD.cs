@@ -12,7 +12,6 @@ namespace InteractiveMiniGame.UI
         [SerializeField] RectTransform crossHair;
 
         [SerializeField] RectTransform interactableInfo;
-        [SerializeField] RectTransform russianEggsInstruction;
 
         private PlayerInput _playerInput;
         private Interactor _interactor;
@@ -39,16 +38,10 @@ namespace InteractiveMiniGame.UI
             if (_interactor.currentInteractable != null && !_closeUpController.closedUpObject)
             {
                 interactableInfo.gameObject.SetActive(true);
-
-                if (_interactor.currentInteractable is RussianEggs.RussianEggsController)
-                {
-                    russianEggsInstruction.gameObject.SetActive(true);
-                }
             }
             else
             {
                 interactableInfo.gameObject.SetActive(false);
-                russianEggsInstruction.gameObject.SetActive(false);
             }
         }
     }
