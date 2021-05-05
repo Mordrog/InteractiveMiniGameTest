@@ -12,7 +12,7 @@ namespace InteractiveMiniGame
         [Tooltip("Scale of how close object should be closed to")]
         [SerializeField] public float closeUpScaleOffset = 0.4f;
 
-        [HideInInspector] public Transform closedUpObject;
+        public Transform closedUpObject { get; private set; }
 
         public delegate void OnPerformEnd();
 

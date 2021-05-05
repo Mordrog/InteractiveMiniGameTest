@@ -8,13 +8,13 @@ namespace InteractiveMiniGame
     {
         private CharacterController _controller;
 
-        public float speed = 12f;
-        public float gravity = -10f;
-        public float jumpHeight = 2f;
+        [SerializeField] public float speed = 12f;
+        [SerializeField] public float gravity = -10f;
+        [SerializeField] public float jumpHeight = 2f;
 
-        public Transform groundCheck;
-        public float groundDistance = 0.4f;
-        public LayerMask groundMask;
+        [SerializeField] public Transform groundCheck;
+        [SerializeField] public float groundDistance = 0.4f;
+        [SerializeField] public LayerMask groundMask;
 
         Vector2 _movementDirection;
 
