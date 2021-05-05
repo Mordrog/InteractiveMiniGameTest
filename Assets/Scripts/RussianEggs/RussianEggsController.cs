@@ -19,6 +19,12 @@ namespace InteractiveMiniGame.RussianEggs
         [SerializeField] public string upLeft;
         [SerializeField] public string downLeft;
 
+        [Header("Virtual buttons")]
+        [SerializeField] public VirtualButton upRightButton;
+        [SerializeField] public VirtualButton downRightButton;
+        [SerializeField] public VirtualButton upLeftButton;
+        [SerializeField] public VirtualButton downLeftButton;
+
         public bool CanInteract { get; private set; } = true;
 
         private PlayerInput _currentPlayerInput;
@@ -116,24 +122,48 @@ namespace InteractiveMiniGame.RussianEggs
         {
             if (russianEggsMain.gameStarted && !russianEggsMain.gameOver)
                 russianEggsMain.wolfPosition = InGamePosition.UpRight;
+
+            ClickButton(upRightButton);
         }
 
         public void OnDownRight(InputAction.CallbackContext context)
         {
             if (russianEggsMain.gameStarted && !russianEggsMain.gameOver)
                 russianEggsMain.wolfPosition = InGamePosition.DownRight;
+
+            ClickButton(downRightButton);
         }
 
         public void OnUpLeft(InputAction.CallbackContext context)
         {
             if (russianEggsMain.gameStarted && !russianEggsMain.gameOver)
                 russianEggsMain.wolfPosition = InGamePosition.UpLeft;
+
+            ClickButton(upLeftButton);
         }
 
         public void OnDownLeft(InputAction.CallbackContext context)
         {
             if (russianEggsMain.gameStarted && !russianEggsMain.gameOver)
                 russianEggsMain.wolfPosition = InGamePosition.DownLeft;
+
+            ClickButton(downLeftButton);
+        }
+
+        void ClickButton(VirtualButton button)
+        {
+            StartCoroutine(ClickButton(0.2f));
+
+            IEnumerator ClickButton(float time)
+            {
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
+                {
+                    button.On = true;
+                    yield return null;
+                }
+
+                button.On = false;
+            }
         }
     }
 }
